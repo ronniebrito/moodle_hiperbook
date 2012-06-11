@@ -1,0 +1,54 @@
+<!-- $Id: edit.html,v 1.5 2004/11/15 22:01:05 skodak Exp $ //-->
+
+<form name="pageeditform" method="post" action="parserHyperbook.php">
+<table align="center" cellpadding="5">
+<tr valign="top">
+    <td valign="top" align="right">
+        <p><b><?php echo get_string('content', 'hiperbook');?>:</b></p>
+        <font size="1">
+            <?PHP
+
+$usehtmleditor = false;
+            helpbutton('writing', get_string('helpwriting'), 'moodle', true, true);
+            echo '<br />';
+            if ($usehtmleditor) {
+               helpbutton('richtext', get_string('helprichtext'), 'moodle', true, true);
+            } else {
+               emoticonhelpbutton('theform', 'text');
+            }
+             ?><br />
+        </font>
+    </td>
+    <td align="center">
+
+        <?php 		 
+        
+        if ($page->content== null){ 
+            
+             if ($CFG->default_template_pages!= null) { 
+                $page->content=$CFG->default_template_pages;
+             }
+             
+             if ($book->template_main!= null) { 
+                $page->content=$book->template_main;
+             }
+        } 
+      
+		print_textarea($usehtmleditor, 20, 60, 630, 400, 'content', '', $course->id);       
+        
+        ?>
+        
+        
+    </td>
+</tr>
+</table>
+<center>
+    <input type="submit" value="<?php print_string('parse') ?>" />
+    <input type="reset" value="<?php print_string('cancel') ?>" />
+</center>
+
+
+  
+ 	<input type="hidden" name="id"        value="<?php p($cm->id) ?>" />
+    <input type="hidden" name="sesskey" value="<?php echo $USER->sesskey ?>" /> 
+</form>

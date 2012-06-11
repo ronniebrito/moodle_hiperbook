@@ -1,0 +1,49 @@
+  
+.pagination {
+	height:63px;
+	
+	background-image:url(../interface/pg_span.jpg);
+	background-repeat:repeat-x;
+	
+}  
+.pagination a {
+    text-decoration: none;
+	
+}
+
+.pagination a, .pagination span {
+    display:block;
+    float: left;
+	background-image:url(../interface/pg_span.jpg);
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#999999;
+	text-align:center;
+	width:30px;
+	height:38px;
+	padding-top:25px;
+}
+
+
+.pagination .current{
+
+background-image:url(../interface/pagenumber_over.jpg);
+background-repeat:no-repeat;
+font-weight:bold;
+color:#FFFFFF;
+}
+
+
+.pagination .prev{
+background-image:url(../interface/back.jpg);
+background-repeat:no-repeat;
+			width:53px;
+			height:63px;
+}
+
+.pagination .next{
+background-image:url(../interface/next.jpg);
+background-repeat:no-repeat;
+			width:53px;
+			height:63px;
+}

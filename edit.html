@@ -1,0 +1,104 @@
+<!-- $Id: edit.html,v 1.5 2004/11/15 22:01:05 skodak Exp $ //-->
+
+<script type="text/javascript">
+<!--
+function toggleBox(szDivID, iState) // 1 visible, 0 hidden
+{
+    if(document.layers)	   //NN4+
+    {
+       document.layers[szDivID].visibility = iState ? "show" : "hide";
+       document.layers[szDivID].display = iState ? "block" : "none";
+    }
+    else if(document.getElementById)	  //gecko(NN6) + IE 5+
+    {
+        var obj = document.getElementById(szDivID);
+        obj.style.visibility = iState ? "visible" : "hidden";
+        obj.style.display = iState ? "block" : "none";
+    }
+    else if(document.all)	// IE 4
+    {
+        document.all[szDivID].style.visibility = iState ? "visible" : "hidden";
+		 document.all[szDivID].style.display = iState ? "block" : "none";
+    }
+}
+
+
+// -->
+
+</script>
+
+<style type="text/css">
+<!--
+.hidden  { z-index:99;  visibility:hidden; display:none;}
+-->
+</style>
+
+<form name="chaptereditform" method="post" action="edit.php">
+<table align="center" cellpadding="5">
+<?  if ($chapter->id == 0) { ?>
+<input type="radio" name="tipo" value="new" onClick="toggleBox('real_chapter',1);toggleBox('link_chapter',0);" checked="checked"><?php print_string('newchapter','hiperbook') ?>
+<input type="radio" name="tipo" value="link" onClick="toggleBox('link_chapter',1);toggleBox('real_chapter',0);" ><?php print_string('linktoexistent','hiperbook') ?>
+<? } ?>
+
+<tr valign="top">
+    <td align="right">
+        <b><?php print_string("chaptertitle", "hiperbook") ?>:</b>
+    </td>
+    <td align="left" valign="top"><div id='link_chapter' class="hidden">
+				<select name="targetchapterid">
+				<?php
+                global $db;
+
+                //$db->debug =true; 
+                
+                if ($isteacher){ 
+                	$select = ' and hidden=1';
+                }else{ // stdudents
+                	$select = ' and hidden =0';
+                    if($groupmode == 1){ // separate groups
+                    	$select .= ' and groupid ='.$groupid; 
+                    }
+                }
+                
+               // var_dump($groupid);
+                
+				$lchapters = get_records_select('hiperbook_chapters', 'bookid='.$cm->instance . $select, 'id');
+				foreach($lchapters as $lchapter){
+					if($link->targetchapterid == $lchapter->id){
+						echo "<option value=\"". $lchapter->id."\" selected>".  $lchapter->title."</option>";
+					}else{
+						echo "<option value=\"". $lchapter->id."\" >".  $lchapter->title."</option>";
+					}
+				}
+				?>
+				</select>
+		</div>
+		<div id='real_chapter' class="hidden">
+        <br />
+			<input type="text" name="title" size="30" value="<?php p($chapter->title) ?>">
+		</div>		
+    </td>
+</tr>
+
+</table>
+<center>
+    <input type="submit" value="<?php print_string('savechanges') ?>" />
+    <input type="reset" value="<?php print_string('revert') ?>" />
+    <?php
+        if($chapter->id == -1) {
+            echo '<font size="-1"> (<a href="import.php?id='.$cm->id.'">'.get_string('doimport', 'book').'</a>)</font>';
+        }
+    ?>
+</center>
+    <input type="hidden" name="id"        value="<?php p($cm->id) ?>" />
+    <input type="hidden" name="groupid"        value="<?php p($groupid) ?>" />
+    
+    <input type="hidden" name="chapternum"   value="<?php p($chapternum) ?>" />
+ 	<input type="hidden" name="parentnavchapterid"   value="<?php p($parentnavchapterid) ?>" />
+ 	<input type="hidden" name="target_navigation_chapter"   value="<?php p($target_navigation_chapter) ?>" />
+	<input type="hidden" name="navigationnum"   value="<?php p($navigationnum) ?>" />
+   <? if ($chapter->id) { ?> <input type="hidden" name="chapterid" value="<?php p($chapter->id) ?>" /> <? } ?>
+    <input type="hidden" name="sesskey" value="<?php echo $USER->sesskey ?>" /> 
+</form>
+<script>  toggleBox('real_chapter',1);
+ toggleBox('link_chapter',0); </script>

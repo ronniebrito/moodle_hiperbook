@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style3 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+.style4 {font-size: 12px}
+-->
+</style>
+</head>
+
+<body>
+<p>&nbsp;</p>
+<table width="759" border="0">
+  <tr>
+    <td width="100"><span class="style3">Metadados</span></td>
+    <td width="169"><span class="style4"></span></td>
+    <td width="186"><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">Geral
+        <label></label>
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="3"><span class="style3">1.1 Informa&ccedil;&atilde;o catalogr&aacute;fica </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Tipo</div></td>
+    <td><span class="style3">
+      <label>
+      <select name="catalog">
+        <option>ISBN</option>
+        <option>ARIADNE</option>
+        <option>URI</option>
+      </select>
+      </label>
+    </span></td>
+    <td><div align="right" class="style3">Valor</div></td>
+    <td colspan="3"><input name="entry" type="text" /></td>
+  </tr>
+  <tr>
+    <td><span class="style3">1.2 T&iacute;tulo:</span></td>
+    <td colspan="5"><input name="title" type="text" size="75" /></td>
+  </tr>
+  <tr>
+    <td><span class="style3">1.3 L&iacute;ngua:</span></td>
+    <td><span class="style3">
+      <select name="language">
+        <option value="pt_BR">Portugu&ecirc;s-Brasil</option>
+        <option value="en">Ingl&ecirc;s</option>
+      </select>
+    </span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td valign="top"><div align="left" class="style3">1.4 Descri&ccedil;&atilde;o </div>
+    <div align="left" class="style3"></div></td>
+    <td colspan="5"><span class="style3">
+      <label>
+      <textarea name="description" cols="75" rows="7"></textarea>
+      </label>
+    </span></td>
+  </tr>
+  <tr>
+    <td valign="top"><div align="left" class="style3">1.5 Palavras-chaves </div></td>
+    <td colspan="5" valign="top"><span class="style3">
+      <textarea name="keyword" cols="75" rows="5" id="keyword"></textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td valign="top"><span class="style3">1.6 Abrang&ecirc;ncia </span></td>
+    <td colspan="5"><span class="style3">
+      <textarea name="coverage" cols="75" rows="5" id="coverage"></textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td><span class="style3">1.7 Estrutura </span></td>
+    <td colspan="5"><span class="style3">
+      <select name="structure" id="structure">
+        <option value="atomic">At&ocirc;mico</option>
+        <option value="collection">Cole&ccedil;&atilde;o</option>
+        <option value="networked">Rede</option>
+        <option value="hierarchical">Hier&aacute;rquica</option>
+        <option value="linear">Linear</option>
+      </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td width="100"><span class="style3">1.8 Granularidade </span></td>
+    <td colspan="5"><span class="style3">
+      <select name="aggregation_level" id="aggregation_level">
+        <option value="1">V&iacute;deo, Anima&ccedil;&atilde;o, Texto</option>
+        <option value="2">Copnteúdo de Tópico</option>
+        <option value="3">Conteúdo de Disciplina</option>
+        <option value="4">Curso</option>
+      </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">2 Ciclo de vida</span></td>
+  </tr>
+  <tr>
+    <td><span class="style3">2.1 Vers&atilde;o </span></td>
+    <td colspan="5"><input name="version" type="text" size="75" /></td>
+  </tr>
+  <tr>
+    <td><span class="style3">2.2 Status </span></td>
+    <td colspan="5"><span class="style3">
+      <select name="version_status">
+        <option value="draft" selected="selected">Rascunho</option>
+        <option value="final">Final</option>
+        <option value="revised">Revisada</option>
+        <option value="unavailable">Indispon&iacute;vel</option>
+      </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="6"><span class="style3">2.3 Contribui&ccedil;&otilde;es </span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Papel</div></td>
+    <td><span class="style3">
+      <select name="select6">
+        <option value="author" selected="selected">Autor</option>
+        <option value="publisher">Publicador</option>
+        <option value="unknow">Desconhecido</option>
+        <option value="initiator">Iniciador</option>
+        <option value="terminator">Terminador</option>
+        <option value="validator">Validator</option>
+        <option value="editor">Editor</option>
+        <option value="graphical designer">Designer gr&aacute;fico</option>
+        <option value="technical implementer">Implementador t&eacute;cnico</option>
+        <option value="content provider">Provisor de conte&uacute;do</option>
+        <option value="technical validator">Validador t&eacute;cnico</option>
+        <option value="educational validator">Validador educacional</option>
+        <option value="script writer">Roteirista</option>
+        <option value="instructional designer">Designer instrucional</option>
+        <option value="subject matter expert">Especialista</option>
+      </select>
+    </span></td>
+    <td><div align="right" class="style3">Entidade</div></td>
+    <td width="70"><span class="style3"> (vcard) </span></td>
+    <td width="46"><div align="right" class="style3">Data</div></td>
+    <td width="182"><span class="style3">
+      <label>
+      <input type="text" name="textfield" />
+      </label>
+    </span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Papel</div></td>
+    <td><span class="style3">
+      <select name="select7">
+        <option value="author" selected="selected">Autor</option>
+        <option value="publisher">Publicador</option>
+        <option value="unknow">Desconhecido</option>
+        <option value="initiator">Iniciador</option>
+        <option value="terminator">Terminador</option>
+        <option value="validator">Validator</option>
+        <option value="editor">Editor</option>
+        <option value="graphical designer">Designer gr&aacute;fico</option>
+        <option value="technical implementer">Implementador t&eacute;cnico</option>
+        <option value="content provider">Provisor de conte&uacute;do</option>
+        <option value="technical validator">Validador t&eacute;cnico</option>
+        <option value="educational validator">Validador educacional</option>
+        <option value="script writer">Roteirista</option>
+        <option value="instructional designer">Designer instrucional</option>
+        <option value="subject matter expert">Especialista</option>
+      </select>
+    </span></td>
+    <td><div align="right" class="style3">Entidade</div></td>
+    <td><span class="style4"></span></td>
+    <td><div align="right" class="style3">Data</div></td>
+    <td><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Papel</div></td>
+    <td><span class="style3">
+      <select name="select8">
+        <option value="author" selected="selected">Autor</option>
+        <option value="publisher">Publicador</option>
+        <option value="unknow">Desconhecido</option>
+        <option value="initiator">Iniciador</option>
+        <option value="terminator">Terminador</option>
+        <option value="validator">Validator</option>
+        <option value="editor">Editor</option>
+        <option value="graphical designer">Designer gr&aacute;fico</option>
+        <option value="technical implementer">Implementador t&eacute;cnico</option>
+        <option value="content provider">Provisor de conte&uacute;do</option>
+        <option value="technical validator">Validador t&eacute;cnico</option>
+        <option value="educational validator">Validador educacional</option>
+        <option value="script writer">Roteirista</option>
+        <option value="instructional designer">Designer instrucional</option>
+        <option value="subject matter expert">Especialista</option>
+      </select>
+    </span></td>
+    <td><div align="right" class="style3">Entidade</div></td>
+    <td><span class="style4"></span></td>
+    <td><div align="right" class="style3">Data</div></td>
+    <td><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Papel</div></td>
+    <td><span class="style3">
+      <select name="select9">
+        <option value="author" selected="selected">Autor</option>
+        <option value="publisher">Publicador</option>
+        <option value="unknow">Desconhecido</option>
+        <option value="initiator">Iniciador</option>
+        <option value="terminator">Terminador</option>
+        <option value="validator">Validator</option>
+        <option value="editor">Editor</option>
+        <option value="graphical designer">Designer gr&aacute;fico</option>
+        <option value="technical implementer">Implementador t&eacute;cnico</option>
+        <option value="content provider">Provisor de conte&uacute;do</option>
+        <option value="technical validator">Validador t&eacute;cnico</option>
+        <option value="educational validator">Validador educacional</option>
+        <option value="script writer">Roteirista</option>
+        <option value="instructional designer">Designer instrucional</option>
+        <option value="subject matter expert">Especialista</option>
+      </select>
+    </span></td>
+    <td><div align="right" class="style3">Entidade</div></td>
+    <td><span class="style4"></span></td>
+    <td><div align="right" class="style3">Data</div></td>
+    <td><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">3. Meta metadados (informacoes sobre a pessoa q preencheu os metadados) </span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">5 Educacional</span></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><span class="style3">5.1 Tipo de interatividade </span></td>
+    <td><span class="style3">
+      <select name="interactivitytype">
+        <option value="active">Ativa</option>
+        <option value="expositive">Expositiva</option>
+        <option value="mixed">Mista</option>
+      </select>
+    </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td height="25" colspan="2"><span class="style3">5.2 Tipos de recursos </span></td>
+    <td colspan="4"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="6"><span class="style3">
+      <label>
+      <br />
+      </label>
+      </span>
+      <table width="100%" border="0">
+        <tr>
+          <td class="style3"><input name="exercise" type="checkbox" id="exercise" value="1" />
+Exerc&iacute;cios <input name="slide" type="checkbox" id="slide" value="1" />
+Slide </td>
+          <td class="style3"><input name="problem_statement" type="checkbox" id="problem_statement" value="1" />
+Apresenta&ccedil;&atilde;o de problema </td>
+        </tr>
+        <tr>
+          <td class="style3"><input name="index_type" type="checkbox" id="index" value="1" />
+&Iacute;ndice<input name="experiment" type="checkbox" id="experiment" value="1" />
+Experimento </td>
+          <td class="style3"><input name="diagram" type="checkbox" id="diagram" value="1" />
+Diagrama </td>
+        </tr>
+        <tr>
+          <td class="style3"><input name="exam" type="checkbox" id="exam" value="1" />
+Prova <input name="questionnaire" type="checkbox" id="questionnaire" value="1" />
+Question&aacute;rio</td>
+          <td class="style3"><input name="narrative_text" type="checkbox" id="narrative_text" value="1" />
+Texto narrativo </td>
+        </tr>
+        <tr>
+          <td class="style3"><input name="figure" type="checkbox" id="figure" value="1" />
+Figura <input name="graph" type="checkbox" id="graph" value="1" />
+Gr&aacute;fico</td>
+          <td class="style3"><input name="lecture" type="checkbox" id="lecture" value="1" />
+Aula/Palestra</td>
+        </tr>
+        <tr>
+          <td class="style3"><input name="simulation" type="checkbox" id="simulation" value="1" />
+Simula&ccedil;&otilde;es<input name="table_type" type="checkbox" id="table" value="1" />
+Tabela</td>
+          <td class="style3"><input name="self_assesment" type="checkbox" id="self_assesment" value="1" />
+Auto-avalia&ccedil;&atilde;o </td>
+        </tr>
+      </table>
+      <span class="style3">
+      <label></label>
+      </span></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.3 Tipo de Interatividade </span></td>
+    <td><span class="style3">
+      <select name="semanticdensity">
+        <option value="very low">Muito baixo</option>
+        <option value="low">Baixo</option>
+        <option value="medium">M&eacute;dio</option>
+        <option value="high">Alto</option>
+        <option value="very high">Muito alto</option>
+      </select>
+    </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.4 Densidade Sem&acirc;ntica </span></td>
+    <td><span class="style3">
+      <select name="select18">
+        <option value="very low">Muito baixo</option>
+        <option value="low">Baixo</option>
+        <option value="medium">M&eacute;dio</option>
+        <option value="high">Alto</option>
+        <option value="very high">Muito alto</option>
+      </select>
+    </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.5 Papel do Usu&aacute;rio final </span></td>
+    <td colspan="4"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style4"></span></td>
+    <td colspan="4"><table width="100%" border="0">
+        <tr>
+          <td class="style3"><input name="intendeduserrole" type="checkbox" id="figure" value="teacher" />
+            Professor </td>
+          <td class="style3"><input name="intendeduserrole" type="checkbox" id="intendeduserrole" value="student" />
+            Aluno</td>
+        </tr>
+        <tr>
+          <td class="style3"><input name="intendeduserrole" type="checkbox" id="intendeduserrole" value="author" />
+            Autor</td>
+          <td class="style3"><input name="intendeduserrole" type="checkbox" id="table" value="manager" />
+            Administrador</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.6 Contexto </span></td>
+    <td colspan="4"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style4"></span></td>
+    <td colspan="4">
+      <table width="100%" border="0">
+        <tr>
+          <td class="style3"><input name="higher_education" type="checkbox" id="higher_education" value="1" />
+            Educa&ccedil;&atilde;o Superior </td>
+          <td><input name="school" type="checkbox" id="intendeduserrole3" value="1" />
+            Escola b&aacute;sica </td>
+        </tr>
+        <tr>
+          <td><input name="training" type="checkbox" id="intendeduserrole3" value="1" />
+            Treinamentos</td>
+          <td><input name="other" type="checkbox" id="intendeduserrole4" value="1" />
+            Outros</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.7 Faixa Et&aacute;ria t&iacute;pica </span></td>
+    <td><input name="typicalagerange" type="text" size="30" /></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.8 Dificuldade </span></td>
+    <td><span class="style3">
+      <select name="difficulty">
+        <option value="0">Muito f&aacute;cil</option>
+        <option value="1">F&aacute;cil</option>
+        <option value="2">M&eacute;dio</option>
+        <option value="3">Dif&iacute;cil</option>
+        <option value="4">Muito dif&iacute;cil</option>
+      </select>
+    </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.9 Tempo para aprendizagem </span></td>
+    <td><input name="typicallearningtime" type="text" size="30" /></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">5.10 Descri&ccedil;&atilde;o de uso </span></td>
+    <td colspan="4"><span class="style3">
+      <textarea name="educational_description" cols="75" rows="5"></textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">6 Direitos autorais </span></td>
+  </tr>
+  <tr>
+    <td><span class="style3">6.1 Custo</span></td>
+    <td><span class="style3">
+      <select name="cost">
+        <option value="no">N&atilde;o</option>
+        <option value="yes">Sim</option>
+      </select>
+    </span></td>
+    <td><span class="style3">6.2 Restri&ccedil;&otilde;es de Copyright </span></td>
+    <td colspan="3"><span class="style3">
+      <select name="copyrightandothersrestrictions">
+        <option value="no">N&atilde;o</option>
+        <option value="yes">Sim</option>
+      </select>
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style3">6.3 Descri&ccedil;&atilde;o </span></td>
+    <td colspan="4"><span class="style3">
+      <textarea name="rights_description" cols="75" rows="5"></textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td colspan="6" bgcolor="#CCCCCC"><span class="style3">7 Rela&ccedil;&atilde;o com outros recursos </span></td>
+  </tr>
+  <tr>
+    <td><span class="style3">Tipo</span></td>
+    <td><span class="style3">
+      <select name="kind">
+        <option value="IsPartOf">&eacute; parte de </option>
+        <option value="HasPart">tem parte</option>
+        <option value="IsVersionOf">&eacute; vers&atilde;o de</option>
+        <option value="HasVersion">tem vers&atilde;o</option>
+        <option value="IsFormatOf">&eacute; formato de</option>
+        <option value="HasFormat">tem formato</option>
+        <option value="References">referencia</option>
+        <option value="IsReferencedBy">&eacute; referenciado por</option>
+        <option value="IsBasedOn">&eacute; baseado em </option>
+        <option value="IsBasisFor">&eacute; base para</option>
+        <option value="Requires">requer</option>
+        <option value="IsRequiredBy">&eacute; requerido por</option>
+      </select>
+    </span></td>
+    <td><p><span class="style1"><span class="style4"><span class="style1"><span class="style4"><span class="style4"></span></span></span></span></span></p>    </td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><span class="style3">Recurso:</span></td>
+    <td><div align="right" class="style3">Identificador</div></td>
+    <td colspan="4"><input name="indentifier" type="text" size="30" /></td>
+  </tr>
+  <tr>
+    <td><span class="style4"></span></td>
+    <td><div align="right" class="style3">Descri&ccedil;&atilde;o</div></td>
+    <td colspan="4"><span class="style3">
+      <textarea name="description" cols="75" rows="5"></textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="3"><span class="style3">Informa&ccedil;&atilde;o catalogr&aacute;ficas </span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+  <tr>
+    <td><div align="right" class="style3">Tipo</div></td>
+    <td><span class="style3">
+      <label>
+      <select name="catalog">
+        <option>ISBN</option>
+        <option>ARIADNE</option>
+        <option>URI</option>
+      </select>
+      </label>
+    </span></td>
+    <td><div align="right" class="style3">Valor</div></td>
+    <td colspan="3"><input name="entry" type="text" /></td>
+  </tr>
+  <tr>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td><span class="style4"></span></td>
+    <td colspan="3"><span class="style4"></span></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

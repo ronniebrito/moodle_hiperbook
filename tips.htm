@@ -1,0 +1,125 @@
+<script type="text/javascript">
+<!--
+function toggleBox(szDivID, iState) // 1 visible, 0 hidden
+{
+    if(document.layers)	   //NN4+
+    {
+       document.layers[szDivID].visibility = iState ? "show" : "hide";
+       document.layers[szDivID].display = iState ? "block" : "none";
+    }
+    else if(document.getElementById)	  //gecko(NN6) + IE 5+
+    {
+        var obj = document.getElementById(szDivID);
+        obj.style.visibility = iState ? "visible" : "hidden";
+        obj.style.display = iState ? "block" : "none";
+    }
+    else if(document.all)	// IE 4
+    {
+        document.all[szDivID].style.visibility = iState ? "visible" : "hidden";
+		 document.all[szDivID].style.display = iState ? "block" : "none";
+    }
+}
+
+
+// -->
+
+</script>
+
+<style type="text/css">
+<!--
+.hidden  { z-index:99;  visibility:hidden; display:none;}
+-->
+</style>
+
+<?php
+
+
+	$linktoexistent = get_string('linktoexistent', 'hiperbook');
+	$newitem= get_string('newitem', 'hiperbook');
+    
+   if ($tip == 0) { ?>
+<input type="radio" name="tipo" value="new" onClick="toggleBox('real_chapter',1);toggleBox('link_chapter',0);"  ><?php echo $newitem; ?>
+<input type="radio" name="tipo" value="link" onClick="toggleBox('link_chapter',1);toggleBox('real_chapter',0);" >
+<?php
+
+echo $linktoexistent;
+
+ } ?>
+
+<? if ($backbtn) { ?><a href="tips.php?chapterid=<?= $chapterid ?>&edit=<?= $edit ?>&id=<?=  $cm->id ?>&pageid=<?php echo $pageid ?>&groupid=<?php echo $groupid?>" > voltar </a> 
+<?  } if ((($edit==1)||($add==1))&&!$view) { 
+	if($tip->id){ ?>
+<a href="tips.php?tipid=<?=$tip->id?>&id=<?=$cm->id?>&delete=1&edit=1&chapterid=<?=$chapterid?>&pageid=<?php echo $pageid ?>&groupid=<?php echo $groupid?>"><img src="<?= $CFG->pixpath?>/t/delete.gif" border="0"> </a>
+<? } ?>
+
+
+
+<form name="tipeditform" method="post" action="tips.php?groupid=<?php echo $groupid ?>">
+
+
+
+<div id='real_chapter' <?php  if ($tip == 0) { ?> class="hidden" <?php } ?>>
+tip:
+  <input type="text" value="<?= $tip->title ?>" name="title">
+<br>
+Conte&uacute;do:
+<? 
+
+ if ($tip > 0) {
+print_textarea($usehtmleditor, 10, 64, 320, 150, 'content', $tip->content, $course->id);    
+}else{
+print_textarea($usehtmleditor, 10, 64, 320, 150, 'content', $book->template_hw, $course->id);    
+} 
+?> 
+
+
+   <input type="submit" value="<?php print_string('savechanges') ?>" />
+    <input  type="reset" value="<?php print_string('revert') ?>"/>
+    
+    </div>
+<div id='link_chapter' class="hidden">
+<select name="tipid_existent"> 
+<option value="0" selected="selected">  </option>
+
+<?php
+
+//$tips = get_records_sql('select * from '.$CFG->prefix.'hiperbook_pages_tips ph, '.$CFG->prefix.'hiperbook_chapters_tips ch where ph.idpage = '.$page->id.' and ph.idtip= ch.id'); 
+
+// se grupos separados, mostra apenas todos os participantes e do grupo
+
+if($cm->groupmode == SEPARATEGROUPS){
+	$sqlaux = ' and (groupid = 0 or groupid = '.$groupid.' )';
+}
+
+$tips = get_records_sql('select * from '.$CFG->prefix.'hiperbook_chapters_tips where  idhiperbook ='.$book->id.' '. $sqlaux); 
+
+
+foreach($tips as $hw){
+?>
+	<option value="<?php echo $hw->id;?>"><?php echo $hw->title;?> </option>
+<?php
+}
+
+?>
+</select>
+   <input type="submit" value="<?php print_string('savechanges') ?>" />
+    <input  type="reset" value="<?php print_string('revert') ?>"/>
+
+</div>
+
+ <input type="hidden" name="groupid"   value="<?= $groupid ?>" />
+ <input type="hidden" name="pageid"   value="<?= $pageid ?>" />
+ <input type="hidden" name="chapterid"   value="<?= $chapterid ?>" />
+ <input type="hidden" name="tipid"   value="<?= $tipid ?>" />
+ <input type="hidden" name="tipnum"   value="<?= $tipnum ?>" />
+ 	<input type="hidden" name="id"        value="<?php p($cm->id) ?>" />
+    <input type="hidden" name="sesskey" value="<?php echo $USER->sesskey ?>" /> 
+    <input type="hidden" name="edit" value="<?= $edit?>" /> 
+<? }else{ ?>
+<div class="corpotexto"><b><? echo $tip->title; ?></b>
+<br>
+<?
+echo $tip->content;
+}?></div>
+
+</form>

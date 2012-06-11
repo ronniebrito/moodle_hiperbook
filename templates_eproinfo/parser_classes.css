@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.ANIMACAO, .REFLETIR, .GLOSSARIO, .VIDEO, .SAIBAMAIS, .ORIENTACAO, .ATIVIDADE, .BIBLIOGRAFIA, .DIARIODEBORDO{
+	font-family: "trebuchet MS","Nimbus Sans L";
+	font-weight:bold;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.DESTAQUE{
+	color:#FFFFFF;
+	background-color:#7C9A53;
+	font-family: "trebuchet MS","Nimbus Sans L";	
+	display:block;
+	padding:10px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.CITACAO{
+	font-family: "trebuchet MS","Nimbus Sans L";
+	line-height:15px;
+	font-size:12px;	
+	display:block;
+	margin-left:30px;	
+	padding:10px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.CONTEUDO{
+	font-family:"trebuchet MS","Nimbus Sans L";
+	font-size:14px;
+	color:#254101;	
+	background-color:#E5F7E5;
+	line-height:20px;
+}
+
+.TITULO{
+	color:#254101;
+	font-size:14px;
+	
+	font-family:"Trebuchet MS","Nimbus Sans L";
+	font-weight:bold;		
+	background-color:#E5F7E5;
+}
+
+.LATERAL{ 
+
+	font-family:"Trebuchet MS","Nimbus Sans L";
+	font-size:12px;
+	background-color:#E5F7E5;
+
+
+}
+
+.LATERAL div{
+	cursor:pointer;
+}
+#imagem{
+	float:left;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+.caixapopup_conteudo{
+	padding:10px;
+	font-family:"Trebuchet MS","Nimbus Sans L";
+	font-size: 14px;
+	background-color: #e5f7e5;
+
+
+}
+
+.caixapopup{
+	width:80%;
+
+
+}
+
+.caixapopup .cabecalho{
+	background-image:url(barra_popup.jpg);
+	background-repeat:x;
+	color:#FFFFFF;
+	 font-family: "Trebuchet MS","Nimbus Sans L";
+	font-size: 14px;
+	font-weight: bold;
+	padding-left:10px;
+
+
+}

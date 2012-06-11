@@ -1,0 +1,51 @@
+  
+.pagination {
+	height:62px;
+	width:459px;
+	
+	background-image:url(pg_span.png);
+	background-repeat:repeat-x;
+	
+}  
+.pagination a {
+    text-decoration: none;
+	
+}
+
+.pagination a, .pagination span {
+    display:block;
+    float: left;
+	background-image:url(pg_span.png);
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#999999;
+	text-align:center;
+	width:29px;
+	height:37px;
+	padding-top:24px;
+}
+
+
+.pagination .current{
+
+background-image:url(pagenumber_over.png);
+background-repeat:repeat-x;
+font-weight:bold;
+color:#FFFFFF;
+}
+
+
+.pagination .prev{
+background-image:url(back.png);
+background-repeat:no-repeat;
+
+			width:47px;
+			height:62px;
+}
+
+.pagination .next{
+background-image:url(next.png);
+background-repeat:no-repeat;
+			width:55px;
+			height:62px;
+}

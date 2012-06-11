@@ -1,0 +1,208 @@
+<?PHP // $Id: view.php,v 1.17 2005/08/25 19:33:12 skodak Exp $
+
+require_once('../../config.php');
+require_once('lib.php');
+
+//var_dump($CFG);
+
+//$db->debug = true;
+
+$groupid = required_param('groupid', PARAM_INT); 
+$pageid = required_param('pageid', PARAM_INT); 
+$chapterid = required_param('chapterid', PARAM_INT); 
+$id = 	required_param('id', PARAM_INT); //cm id
+$edit      = optional_param('edit', -1, PARAM_BOOL);     // Edit mode
+$tipid      = optional_param('tipid', -1, PARAM_INT);     // View mode
+$delete      = optional_param('delete', 0, PARAM_INT);     // delete mode
+$backbtn      = optional_param('backbtn', 0, PARAM_INT);     // delete mode
+
+
+$add = optional_param('add', 0, PARAM_INT);     // View mode
+require_login();
+
+
+if (!$cm = get_record('course_modules', 'id', $id)) {
+    error('Course Module ID was incorrect');
+}
+if (!$course = get_record('course', 'id', $cm->course)) {
+    error('Course is misconfigured');
+}
+
+
+if (!$book = get_record('hiperbook', 'id', $cm->instance)) {
+    error('Course module is incorrect');
+}
+
+
+if (!$page = get_record('hiperbook_chapters_pages', 'id', $pageid)) {
+    error('Page incorrect');
+}
+
+if (!isteacheredit($course->id)and (!$page->opentostudents)) {
+    error('Unable to edit!', $_SERVER['HTTP_REFERER']);
+}
+
+$usehtmleditor = can_use_html_editor();
+print_header( "",null,
+				  "",
+				  '',
+				  '',
+				  false,
+				  null,
+				  null
+				);
+
+?>
+<style type="text/css">
+<!--
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+#topo_tips{
+	background-image: url(<?php echo $CFG->wwwroot. "/file.php/". $course->id. "/template_hiperbook".$book->id."/".$book->img_tips_top ?>);
+	background-repeat:no-repeat;
+	height:150px;
+	width:100%;
+	vertical-align:top;
+	}
+	
+	<?php
+echo $CFG->default_template_css;
+echo $book->template_css;
+?>
+-->
+</style><div id='topo_tips'></div>
+<?php 
+
+	$strdesc = get_string('tip', 'hiperbook');
+	
+
+echo $strdesc;	
+?><br />
+<?
+if($delete){
+	delete_records('hiperbook_pages_tips', 'idtip', $tipid, 'idpage', $pageid);
+}
+
+$tip = get_record('hiperbook_chapters_tips', 'id', $tipid);
+
+if (($form = data_submitted()) && (confirm_sesskey())) {
+
+
+	$tip->content = $form->content;
+	$tip->title = $form->title;
+	$tip->chapterid= $form->chapterid;	
+	$tip->tipnum= $form->tipnum;	
+	$tip->idpage = $form->pageid;	
+	$tip->idhiperbook = $book->id;	
+	$tip->opentostudents = $page->opentostudents;
+	$tip->groupid = $form->groupid;
+	$tip->userid= $USER->id;
+		
+		
+	if ($form->tipid_existent ==0){ 
+		
+		if ($tip->id >0) { // editando	
+			$backbtn=1;
+			if (!update_record('hiperbook_chapters_tips', $tip)) {
+				error('Could not update your tip!!!');
+			}	
+		}else{ // criando uma nova -> insert
+			if (!$tip->id = insert_record('hiperbook_chapters_tips', $tip)) {
+				error('Could not insert a new tip!');
+			}else{
+				// cadastra na apgina atual
+				$ph->idtip = $tip->id;
+				$ph->idpage = $pageid;
+				 insert_record('hiperbook_pages_tips', $ph);
+			}		
+		}			
+	}else{
+
+
+	
+	// cadastra na apgina atual	
+				$ph->idtip = $form->tipid_existent;
+				$ph->idpage = $pageid;
+				 insert_record('hiperbook_pages_tips', $ph);
+	
+	}
+	
+	?><script language="javascript"> window.opener.location.reload(); </script><?
+}
+
+
+// se grupos separados, mostra apenas todos os participantes e do grupo
+
+if($cm->groupmode == SEPARATEGROUPS){
+	$sqlaux = ' and (groupid = 0 or groupid = '.$groupid.' )';
+}
+
+
+$tips = get_records_sql('select * from '.$CFG->prefix.'hiperbook_pages_tips ph, '.$CFG->prefix.'hiperbook_chapters_tips ch where ph.idpage = '.$pageid.' and ph.idtip= ch.id '.$sqlaux ); 
+
+//var_dump($tips);
+$tipcount = $tip ? count($tip) : 0;
+
+if ($edit) { // to add a new tip?>	
+	<a href="tips.php?tipnum=<?= $tipcount +1 ?>&add=1&chapterid=<?= $chapterid ?>&id=<?= $id ?>&pageid=<?php echo $pageid ?>&edit=<?= $edit ?>&groupid=<?php echo $groupid?>"><img src="pix/add.gif" border="0"></a><br>
+	<?
+} 
+	
+// selecionou uma dica para visualizar/editar ou adicionando uma nova, exceto p delete
+if((($tipid>0)||($add))&!$delete){ 
+	//echo 'add/vierw';
+	require('tips.htm');
+	use_html_editor();
+	die();
+//lista de todas as dicas
+}else{ 
+	//echo 'lista';	
+	//caso exista apenas uma dica, exibe ela
+	//senao lista as dicas existentes 
+	// adiciona link para sua edicao se for o caso
+	//	var_dump($tips);
+	if ( ($edit==0)& (sizeof($tip)<2)&&($tip)){	
+		$tip= array_shift($tip);
+		require('tips.htm');
+		use_html_editor();
+		die;
+	}else{
+$i =0;
+		foreach($tips as $tip){					
+			?> <a  href="tips.php?tipid=<?=$tip->id?>&id=<?=$cm->id?>&edit=<?= $edit ?>&backbtn=1&view=1&chapterid=<?=$chapterid?>&pageid=<?php echo $pageid ?>&groupid=<?php echo $groupid?>"><?= $tip->title ?></a>
+				<? if( 
+				$edit&& (isteacheredit($course->id)) || (($tip->opentostudents==1)) &&
+				(($tip->groupid == 0 )|| ($tip->groupid == $groupid))
+				) { 					
+				?> <a href="tips.php?tipid=<?=$tip->id?>&id=<?=$cm->id?>&backbtn=1&edit=1&chapterid=<?=$chapterid?>&pageid=<?php echo $pageid ?>&tipnum=<?= $tip->tipnum?>&groupid=<?php echo $groupid?>"><img src="<?= $CFG->pixpath?>/t/edit.gif" border="0"></a>
+				<a href="tips.php?tipid=<?=$tip->id?>&id=<?=$cm->id?>&delete=1&edit=1&chapterid=<?=$chapterid?>&pageid=<?php echo $pageid ?>&groupid=<?php echo $groupid?>"><img src="<?= $CFG->pixpath?>/t/delete.gif" border="0"></a>
+			 <? $i++;
+				
+				} 
+				
+				if(isteacheredit($course->id)){
+				    if ($tip->opentostudents==1) {
+					
+					  echo '<a title="'.get_string('lock','hiperbook').'" href="lock.php?id='.$cm->id.'&tipid='.$tip->id.'&sesskey='.$USER->sesskey.'&mode=tip&lock=1"><img src="'.$CFG->pixpath.'/i/lock.gif" height="11" width="11" border="0" /></a>';
+				    } else{
+					  echo '<a title="'.get_string('unlock','hiperbook').'" href="lock.php?id='.$cm->id.'&tipid='.$tip->id.'&sesskey='.$USER->sesskey.'&mode=tip&lock=0"><img src="'.$CFG->pixpath.'/i/unlock.gif" height="11" width="11" border="0" /></a>';
+				  
+				    }
+				
+				}
+				
+				?> <br> <?
+		}
+	}	
+}	
+
+
+   
+
+?>

@@ -1,0 +1,23 @@
+<? if ($backbtn) { ?><a href="navpaths.php?chapterid=<?= $chapterid ?>&edit=<?= $edit ?>&id=<?=  $cm->id ?>" > voltar </a> 
+<?  } if ((($edit==1)||($add==1))&&!$view) { 
+	if($navpath->id){ ?>
+<a href="navpaths.php?navpathid=<?=$navpath->navpathid?>&id=<?=$cm->id?>&delete=1&edit=1&chapterid=<?=$chapterid?>"><img src="<?= $CFG->pixpath?>/t/delete.gif" border="0"> </a>
+<? } ?>
+<form name="navpathseditform" method="post" action="navpaths.php" >
+Título:<input type="text" value="<?= $navpath->title ?>" name="title">
+   <input type="submit" value="<?php print_string('savechanges') ?>" />
+    <input  type="reset" value="<?php print_string('revert') ?>"/>
+ <input type="hidden" name="chapterid"   value="<?= $chapterid ?>" />
+ <input type="hidden" name="navpathid"   value="<?= $navpathid ?>" />
+ <input type="hidden" name="navpathnum"   value="<?= $navpathnum ?>" />
+ 	<input type="hidden" name="id"        value="<?php p($cm->id) ?>" />
+    <input type="hidden" name="sesskey" value="<?php echo $USER->sesskey ?>" /> 
+    <input type="hidden" name="edit" value="<?= $edit?>" /> 
+<? }else{ ?>
+<div class="corpotexto"><b><? echo $navpath->title; ?></b>
+<br>
+<?
+echo $navpath->content;
+}?></div>
+
+</form>

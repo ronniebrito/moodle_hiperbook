@@ -1,0 +1,82 @@
+<? if ($backbtn) { ?><a href="links.php?chapterid=<?= $chapterid ?>&edit=<?= $edit ?>&pageid=<?= $pageid ?>&id=<?=  $cm->id ?>&groupid=<?php echo $groupid?>" > voltar </a> 
+<?  } if ((($edit==1)||($add==1))&&!$view) { 
+	if($link->id){ ?>
+<a href="links.php?linkid=<?=$link->linkid?>&id=<?=$cm->id?>&delete=1&edit=1&chapterid=<?=$chapterid?>&groupid=<?php echo $groupid?>"><img src="<?= $CFG->pixpath?>/t/delete.gif" border="0"> </a>
+<? } ?>
+<!--script>
+self.resizeTo(720,450);
+</script-->
+<form name="linkeditform" method="post" action="links.php?groupid=<?php echo $groupid?>" >
+<p>Palavra:
+  <input type="text" value="<?= $link->title ?>" name="title">
+  Abrir em popup: 
+  <select name="popup">
+    <option value="1" <? if ($link->popup=='1'){ echo "selected";}?>>Sim</option>
+    <option value="0" <? if ($link->popup=='0'){ echo "selected";}?>>N&atilde;o</option>
+  </select>
+  Mostrar navega&ccedil;&atilde;o:
+  <select name="show_navigation">
+    <option value="1" <? if ($link->show_navigation=='1'){ echo "selected";}?>>Sim</option>
+    <option value="0" <? if ($link->show_navigation=='0'){ echo "selected";}?>>N&atilde;o</option>
+  </select>
+   <br>
+  <!--select name="targetchapterid">
+     <? 
+$chapters = get_records_select('hiperbook_chapters', 'bookid='.$cm->instance, 'id');
+foreach($chapters as $chapter){
+	if($link->targetchapterid == $chapter->id){
+		echo "<option value=\"". $chapter->id."\" selected>".  $chapter->title."</option>";
+	}else{
+		echo "<option value=\"". $chapter->id."\" >".  $chapter->title."</option>";
+	}
+}
+?>
+   </select-->
+  
+  Destino:
+<select name="target_navigation_chapter">
+<?php
+
+$navchapters = get_records_sql('select  nc.id, np.name, nc.parentnavchapterid, nc.chapterid from '.$CFG->prefix.'hiperbook_navigation_chapters nc,'.$CFG->prefix.'hiperbook_navigationpath np where np.bookid ='. $cm->instance .' and nc.navigationid = np.id order by np.name'); 
+
+
+
+foreach($navchapters as $navchapter){
+
+	
+	$names = hiperbook_links_get_parentchaptersnames($navchapter->id);
+
+	if($link->target_navigation_chapter == $navchapter->id){
+		echo "<option value=\"". $navchapter->id."\" selected>". $navchapter->name. "-". $names."</option>";
+	}else{
+		echo "<option value=\"". $navchapter->id."\" >".$navchapter->name. "-".   $names."</option>";
+	}
+}
+
+
+
+?>
+</select><br>
+  P&aacute;gina
+  <?php    $target_page = get_record('hiperbook_chapters_pages','id', $link->idtargetpageid); ?>
+  <input type="text" width="25" name="pagina_destino" id="pagina_destino" value="<?php  if($target_page->pagenum){ echo $target_page->pagenum; } else{ echo 1; } ?>" >
+  </p>
+<p>
+  <input type="submit" value="<?php print_string('savechanges') ?>" />
+  <input  type="reset" value="<?php print_string('revert') ?>"/>
+    <input type="hidden" name="chapterid"   value="<?= $chapterid ?>" />
+    <input type="hidden" name="pageid"   value="<?= $pageid ?>" />
+    <input type="hidden" name="linkid"   value="<?= $linkid ?>" />
+    <input type="hidden" name="linknum"   value="<?= $linknum ?>" />
+    <input type="hidden" name="id"        value="<?php p($cm->id) ?>" />
+    <input type="hidden" name="sesskey" value="<?php echo $USER->sesskey ?>" /> 
+    <input type="hidden" name="edit" value="<?= $edit?>" /> 
+  <? }else{ ?>
+</p>
+<div class="corpotexto"><b><? echo $link->title; ?></b>
+<br>
+<?
+echo $link->targetchapterid;
+}?></div>
+
+</form><br />
